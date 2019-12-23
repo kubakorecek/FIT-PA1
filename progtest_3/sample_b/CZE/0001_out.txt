@@ -1,0 +1,4 @@
+Vstupni intervaly:
+Celkem: 4955
+255 = ff (16)
+Nespravny vstup.

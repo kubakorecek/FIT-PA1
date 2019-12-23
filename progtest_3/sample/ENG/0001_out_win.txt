@@ -1,0 +1,4 @@
+Intervals:
+Total: 3556
+31 = 11111b
+Invalid input.

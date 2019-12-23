@@ -1,0 +1,6 @@
+[10,10] Air Progtest
+[10,10] PA1 Airways
+[20, 20] PA2 Airways
+[20,20] Segmentation Faultways
+[20,20] PS1 sHellways
+[10,10] AAG Wings

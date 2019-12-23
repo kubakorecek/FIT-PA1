@@ -1,0 +1,3 @@
+Zadejte pocet nadrzi:
+Zadejte parametry nadrzi:
+Nespravny vstup.

@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "typeinfo": "c",
+        "stdlib.h": "c",
+        "cmath": "c",
+        "type_traits": "c"
+    }
+}

@@ -1,0 +1,6 @@
+Zadejte pocet nadrzi:
+Zadejte parametry nadrzi:
+Zadejte objem vody:
+h = 3.636364
+h = 2.727273
+Nespravny vstup.

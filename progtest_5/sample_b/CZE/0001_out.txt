@@ -1,0 +1,13 @@
+Zadejte pocet nadrzi:
+Zadejte parametry nadrzi:
+Zadejte objem vody:
+h = -1.000000
+h = 0.000000
+h = 0.100000
+h = 2.000000
+h = 2.028571
+h = 4.300000
+h = 6.000000
+h = 7.000000
+h = 8.000000
+Pretece.

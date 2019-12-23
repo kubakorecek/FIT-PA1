@@ -1,0 +1,4 @@
+Vstupni intervaly:
+Celkem: 3556
+31 = 11111b
+Nespravny vstup.
