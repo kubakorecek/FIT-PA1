@@ -1,3 +1,0 @@
-Enter flights:
-Minimum distance: 2000000.000000
-Pegasus Airlines PGT1163 - Austrian Airlines AUA849

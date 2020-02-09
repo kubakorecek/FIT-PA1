@@ -1,5 +1,0 @@
-[0,5] Lufthansa LH948
-[5,0] British Airways BA164
-[0,0] Rynair FR2861
-[5,5] Air France AF1886
-[2.5,2.5] Korean Air KAL902

@@ -1,3 +1,0 @@
-[-1000000,0] Pegasus Airlines PGT1163
-[1000000,0] Austrian Airlines AUA849
-[5000000,0] Air India AIC142

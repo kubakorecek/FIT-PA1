@@ -1,8 +1,0 @@
-Zadejte lety:
-Nejmensi vzdalenost: 0.000000
-Air Progtest - PA1 Airways
-Air Progtest - AAG Wings
-PA1 Airways - AAG Wings
-PA2 Airways - Segmentation Faultways
-PA2 Airways - PS1 sHellways
-Segmentation Faultways - PS1 sHellways

@@ -1,3 +1,0 @@
-Enter flights:
-Minimum distance: 12.165525
-easyJet EZY8732 - SAS SAS534

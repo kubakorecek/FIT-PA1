@@ -1,6 +1,0 @@
-Enter flights:
-Minimum distance: 3.535534
-Lufthansa LH948 - Korean Air KAL902
-Rynair FR2861 - Korean Air KAL902
-Korean Air KAL902 - British Airways BA164
-Korean Air KAL902 - Air France AF1886

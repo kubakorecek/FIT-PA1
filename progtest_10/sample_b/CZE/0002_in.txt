@@ -1,3 +1,0 @@
-[-10,-5] Air Malta AMC103
-[10,0] easyJet EZY8732
-[12,12] SAS SAS534
