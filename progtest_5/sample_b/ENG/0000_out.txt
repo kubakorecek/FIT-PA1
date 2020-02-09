@@ -1,10 +1,4 @@
-Enter number of reservoirs:
-Enter reservoir parameters:
-Enter volume:
-Empty.
-h = 0.200000
-h = 0.666667
-h = 2.333333
-h = 14.000000
-Overflow.
-h = 23.000000
+Enter flights:
+Minimum distance: 2.000000
+KLM KL1981 - Wizz Air W67868
+Etihad Airways ETD26 - Emirates UAE93P

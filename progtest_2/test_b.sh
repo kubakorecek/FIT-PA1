@@ -1,9 +1,9 @@
 #!/bin/bash
-g++ -Wall -pedantic ./cv2bv1.c -o ./cv2_b
+g++ -Wall ./get_gen_rep.c -o ./cv_outb
 
-PROG=/home/kubak182/FIT/pa1/progtest_2/cv2_b	
+PROG=/home/kubak182/FIT/pa1/progtest_3/cv_outb	
 
-for IN_FILE in /home/kubak182/FIT/pa1/progtest_2/test/CZE/*_in.txt ; do
+for IN_FILE in /home/kubak182/FIT/pa1/progtest_3/sample_b/CZE/*_in.txt ; do
 	
 	echo $IN_FILE;
 
@@ -17,4 +17,4 @@ for IN_FILE in /home/kubak182/FIT/pa1/progtest_2/test/CZE/*_in.txt ; do
 	else
 	   	echo "OK: $IN_FILE";
 	fi
-done	
+done		

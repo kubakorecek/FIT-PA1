@@ -1,9 +1,9 @@
 #!/bin/bash
-g++ -Wall ./cv2av2.c -o ./cv2_av2
+g++ -Wall ./get_bin3.c -o ./cv_out
 
-PROG=/home/kubak182/FIT/pa1/progtest_2/cv2_av2	
+PROG=/home/kubak182/FIT/pa1/progtest_3/cv_out	
 
-for IN_FILE in /home/kubak182/FIT/pa1/progtest_2/test_a/CZE/*_in.txt ; do
+for IN_FILE in /home/kubak182/FIT/pa1/progtest_3/sample/CZE/*_in.txt ; do
 	
 	echo $IN_FILE;
 

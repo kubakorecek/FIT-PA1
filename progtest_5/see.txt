@@ -1,7 +1,0 @@
- 2201  sed -i '1 s/Ahoj Honzo/Vazeny pane Jene/' "$TEXT" ; sed -i '$s/$/\n*** Uredne opraveno ***/' "$TEXT"
-2186  cat "$STUDENTI" | sort -t ',' -k3,3rn | head -1 | cut -d ',' -f1-2 > nejlepsi.txt
- 2322  grep -w 'na[a-z]*' "$DATA"
- 2360  tail -n+"$BEGIN" "$FILE" | head -"$COUNT"
- 2374  cat "$FILE" | awk -F: '{if($4>100){user=$1;print user"@fit.cvut.cz" }}'
- 2389  grep '.*root.*:[^:]*:[0-9]*:[0-9]*:[^:]*:[^:]*:/bin/bash' "$FILE" | tee admini.txt 
-

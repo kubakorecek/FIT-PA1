@@ -1,276 +1,182 @@
 #include <stdio.h>
-#include <limits.h>
 #include <stdlib.h>
-
-#define MAXR 200000
-#define MAXC 4
-void discardInput ( ) {
-  int c;
-  while ( (c = fgetc(stdin)) != '\n' 
-          && c != EOF ) { 
-  }    
-}
-int calculateVOlume(int * x,int * y, int * z){
-    return *x * *y * *z;
-}
-
-void fillBoundVol(int *arr,int *eq, int n,int m){
-    for(int i = 1;i <n;i++){
-        //arr[i][1] = 0;
-        *(arr+i*2+1)=0;
-        for(int j=0; j<m;j++){
-            if(
-               // arr[i][0] > eq[j][0] && (arr[i][0] > (eq[j][0]+eq[j][1]))){
-               (*(arr+i*2+0)> *(eq +j*4+0) && *(arr+i*2+0)> (*(eq +j*4+0)+*(eq +j*4+1)))){
-               //arr[i][1]+=calculateVOlume(&eq[j][2],&eq[j][3],&eq[j][1]
-               *(arr+i*2+1)+=*(eq +j*4+2) * *(eq +j*4+3) * *(eq +j*4+1);
-               }else if((*(arr+i*2+0)> *(eq +j*4+0)))  
-            {
-              int z = (*(arr+i*2+0)+ *(eq +j*4+0));//(arr[i][0]- eq[j][0]); 
-              *(arr+i*2+1)+= *(eq +j*4+2) * *(eq +j*4+3)*z; 
-            }
-            
-        }
-    }
-}
-int removeDuplicates(int *arr, int n, int col) 
-{ 
-    int j, arr_size;
-    j = 0;
-    arr_size = n;
-    if (n==0 || n==1) 
-        {
-            return n;
-        }
-    else{
-        for(int i =0; i < n;i++){
-            if(
-                //arr[i][col]!=arr[j][col]
-                *(arr+i*2+col) != *(arr+j*2+col)
-                
-                ){
-                j++;
-                *(arr+j*2+col) = *(arr+i*2+col);
-                //arr[j][col]=arr[i][col];
-            }else{
-
-            }
-            
-            
-        }
-    
-    return arr_size =  (j+1);
-    }
-     
-} 
-
-
-int CalculateX(int * low_height,int * high_height, int *eq, int m){
-    int x=0;
-    for(int j=0; j<m;j++){
-
-            if(
-    //*low_height >= eq[j][0] && *high_height<=(eq[j][0]+eq[j][1])){
-    // x+=eq[j][2]*eq[j][3];
-    *low_height >= *(eq+j*4+0) && *high_height<=(*(eq+j*4+0)+*(eq+j*4+1))){                   
-       x+=(*(eq+j*4+2)) * (*(eq+j*4+3));
-        }
-}
-return x;
-}
-double getHeight(int * hl,int * x,int * adjVol){
-    
-    return (double)*hl + ((double)*adjVol/(double)*x); 
-    
-
-}
-int cmpfunc (const void * a, const void * b) {
-   return ( *(int*)a - *(int*)b );
-}
-
-void CleanBuffeR(){
-    int c;
-    while(( c= fgetc(stdin)) !='\n' && c !=EOF){
-
-    }
-}
+#include <math.h>
+#include <float.h>
+#include<string.h>
+#define BUFFER_SIZE 100000
+#define NAME_MAX BUFFER_SIZE - 20
 
 
 
 
-void fillMatrix(int array [][MAXC],int rows, int cols)
-{
-for(int r =0; r<rows;++r){
-    
-  for (int c = 0; c < cols; ++c){
-      array[r][c] =0;
-  }
-    
-    
-    
-    }
-}
-void printMatrix(int *mat, int rows, int cols) {
-  int r, s;
-  for (r=0; r<rows; r++) {
-    for (s=0; s<cols; s++)
-      printf("%5d ", *(mat+r*cols+s ) //mat[r][s]
-      );
-    printf("\n");
-  }
-}
-void fillBoundaries(int *array,int *silos,int rows)
-{
-for(int r =0; r<rows;++r){
-    
-        //array[r+rows][0] =silos[r][0]+silos[r][1];
-        //array[r][0] = silos[r][0];
-        *(array + (r+rows)*2+0) = (*(silos + r*4 +0 )+*(silos + r*4 +1 ));
-        *(array + r*2+0) = *(silos + r*4 +0 );
-    
-    
-    
-    }
-}
+typedef struct Flyght {
+    char *name;
+    double x;
+    double y;
+}FLYGHT;
 
-void getVolandAdjHHHL(int * hl, int * hh, int * volADJ,int const * vol,int *array , int m){
-    for(int j=m-1;j>=0;j--)
-  {
-    if(
-        //array[j][1] < *vol
-        *(array+j*2+1)<*vol
-        
-        )
+typedef struct Pairs  {
+    double distance;
+    int id1;
+    int id2;
+}PAIRS;
+
+void destroy(FLYGHT *fl, int i){
+    for ( i=0; i<2;i++)
     {
-        //*hh = array[j+1][0];
-        //*hl = array[j][0];
-        //*volADJ = *vol - array[j][1];
-
-        *hh = *(array+(j+1)*2+0);
-        *hl = *(array+j*2+0);
-        *volADJ = *vol - *(array+j*2+1);
-
-
-        break;
+     free(fl[i].name);
     }
-    }    
+    free(fl);
+}
 
 
-}
-int readInt(int * out, int min, int max) {
-  int status;
-  while ( (status = scanf("%d", out)) != 1 
-          || *out < min 
-          || *out > max) {
-    if ( status == EOF )
-      return 0;      
-    discardInput ();
-    return 0;
-  }
-  return 1;
-}
-int readAlt(int * out, int min, int max) {
-  int status;
-  while ( (status = scanf("%d", out)) != 1 
-          || *out < min 
-          || *out > max) {
-    if ( status == EOF )
-      return 0;      
-    discardInput ();
-    return 0;
-  }
-  return 1;
-}
-int readMatrix(int *mat, int m, int n) {
-  int r, s;
-  for(r=0; r<m; r++){
-
-  
-    if (!readAlt((mat + r*n+0), INT_MIN, INT_MAX )) 
-    //&mat[r][0]
-        return 0; 
-    for (s=1; s<n; s++)
-      if ( ! readInt (
-          (mat + r*n+s), 
-          //&mat[r][s],
-           1, INT_MAX ))
-        return 0;
-}
-  return 1;
-}
-int main(void){
-printf("Zadejte pocet nadrzi:\n");
-int silos_number, status;
-
-
-status = 1;
-//int static boundaries[2*MAXR][MAXC];
-//int static silos[MAXR][MAXC];
-int test = 0;
-int *silos,*boundaries;
-test = scanf("%d",&silos_number);
-if(test==1 && silos_number <=MAXR && silos_number > 0){
-    printf("Zadejte parametry nadrzi:\n");    
-    silos = (int *)malloc(silos_number*4*sizeof(int));
-    boundaries = (int *)malloc(2*silos_number*2*sizeof(int));
-      
-    if (!readMatrix(silos,silos_number,4)){
-        printf("Nespravny vstup.\n");
-        return 0;
+void printFlytghts(FLYGHT *fl,PAIRS *pair,const double * distance, const int * pairs );
+void PrintFlights(FLYGHT *fl, int const * i);
+PAIRS * calculatePairs(FLYGHT *fl,PAIRS * pair, int const * i,int * num_pair,double * min_dist);
+void PrintPairs(PAIRS *pr, int const * i);
+/*Driving function */
+int main()
+{
+    size_t bufsize = BUFFER_SIZE;
+    char *buffer;
+    buffer = (char *)malloc(bufsize * sizeof(char));
+    int  characters=1;
+    FLYGHT *flights;
+    FLYGHT* more_fly = NULL;
+    flights =(FLYGHT *)malloc(sizeof(*flights));
+    PAIRS *pair;
+    pair = (PAIRS *)malloc(sizeof(*pair));
+    char temp_name[NAME_MAX];
+    
+    if( buffer == NULL || flights==NULL || pair==NULL)
+    {
+        perror("Allocation Failure!!!!");
+        exit(1);
     }
-    fillBoundaries(boundaries,silos,silos_number);
-    //printMatrix(boundaries,2*silos_number,2);
-    qsort (boundaries, 2*silos_number, 2*sizeof(int), cmpfunc );
-    //printMatrix(boundaries,2*silos_number,2);
-    int n_boun = removeDuplicates(boundaries, 2*silos_number,0); 
-    fillBoundVol(boundaries,silos,n_boun,silos_number);
-    //printMatrix(silos,silos_number,4);
-    printMatrix(boundaries,n_boun,2);
-    printf("Zadejte objem vody:\n");
-    int vol=0;
-    while(status){
+    double min_dist = DBL_MAX;
+    //printf("MIN DISTANCE %lf\n\n",min_dist );
+    printf("Zadejte lety:\n");
+    int i=0;
+    int sc=0;
+    int byetescan=0;int bb =0;
+    characters = getline(&buffer,&bufsize,stdin);
+    while(characters >=0 && sc !=-1){
+        //printf("Nespravny vstup.%d You typed: '%s'\n",sc,buffer);   
+        if((sc=sscanf(buffer," [ %lf , %lf ]%n %[^\n]%n",&flights[i].x,&flights[i].y,&bb,temp_name ,&byetescan))==3
+        ||(sc==2 && ((strlen(buffer)-bb-1)==0 || byetescan==0)))
         
-        status = scanf("%d",&vol); 
-        if(status==1 && vol >=0 && status!=EOF){
-            if (vol == 0)
-                {
-                    printf("Prazdne.\n");
-                }
-            else if(
-                //vol > boundaries[n_boun-1][1]
-                  vol > *(boundaries+(n_boun-1)*2+1)  
-                )
-                {
-                    printf("Pretece.\n");
-                }
-            else{
-                int hh=0;
-                int hl=0;
-                int x=0;
-                int voladj=0;
-                double h=0;
-                getVolandAdjHHHL(&hl,&hh,&voladj,&vol,boundaries,n_boun);
-                x = CalculateX(&hl,&hh,silos,silos_number);
-                h =getHeight(&hl,&x,&voladj);
-                printf("h = %.6lf\n",h);
+        {
+            
+            
+            if(!byetescan){
+                byetescan=1;
             }
-
-        }else if(vol<0){
-            printf("Nespravny vstup.\n");
-            break;
-
+            more_fly= (FLYGHT *)realloc(flights,(sizeof(*flights)+sizeof(*flights)* byetescan) *(i+1));
+            //printf("temp name %s\n",temp_name);
+            flights = more_fly;
+            flights[i].name=(char *)malloc(byetescan*sizeof(char));
+            strncpy ( flights[i].name, temp_name, byetescan );
+            //printf("fl name %s\n",flights[i].name);
+            i++;
+            characters = getline(&buffer,&bufsize,stdin);
+        
+        }else if (sc==-1)
+        {
+            //free(flights);
+            //free(buffer);
+            //free(pair);
         }
+        
         else{
-            status=0;
-            break;
+            //printf("Nespravny vstup 111.\n");  
+            //printf("Nespravny vstup.%d You typed: %s\n len  %d\n temp %s \n ",sc,buffer,strlen(buffer+bb),temp_name);   
+            //printf("sssssssssssssss %d %d %d  %d %s  bbb %d\n",i,sc,strlen(buffer),bb, buffer,byetescan);
+            //printf(" tt %d %d\n ",sc,characters);   
+            free(flights);
+            free(buffer);
+            free(pair);
+            printf("Nespravny vstup.\n");
+              
+            return(0);
         }
+        
+        
+        //printf("char is %d and bytescan  is %d  %d \n", characters,byetescan,(sizeof(*flights)+sizeof(int)* byetescan) *(i+1));
+    
+    }
+    
+    int t=0;
+    if(i==1){
+        free(flights);
+        free(buffer);
+        free(pair);
+        printf("Nespravny vstup.\n");
+        return 0; 
+            } 
+    //PrintFlights(flights,&i);
+    pair = calculatePairs(flights,pair,&i,&t,&min_dist);
+   
+    //PrintPairs(pair,&t);
+    
+    printf("Nejmensi vzdalenost: %lf\n", min_dist);
+    printFlytghts(flights,pair,&min_dist,&t);
+    free(flights);
+    free(buffer);
+    free(pair);
+   
+    return(0);
+}
+
+
+
+void PrintFlights(FLYGHT *fl, int const * i){
+
+    for(int j = 0;j<*i;j++){
+       printf("%d je to %lf %lf %s\n",j,fl[j].x, fl[j].y, fl[j].name);
+
     }
 
-    return 0;
-        
-}else{
-    printf("Nespravny vstup.\n");
-    return 0;
-    } 
+}
+void PrintPairs(PAIRS *pr, int const * i){
+
+    for(int j = 0;j<*i;j++){
+       printf("%d pair %d %d  %lf \n",j,pr[j].id1, pr[j].id2, pr[j].distance);
+
+    }
+
+}
+PAIRS *calculatePairs(FLYGHT *fl,PAIRS *pair, int const * i, int * num_pair, double * min_dist){
+    int pairctn = 0;
+    PAIRS *new_pair=NULL;
+    for(int j = 0;j<*i;j++){
+        for(int j2 = j+1;j2<*i;j2++){
+            pair[pairctn].distance = sqrt((fl[j].x-fl[j2].x)*(fl[j].x-fl[j2].x)+(fl[j].y-fl[j2].y)*(fl[j].y-fl[j2].y)); 
+            pair[pairctn].id1=j;
+            pair[pairctn].id2=j2;
+            new_pair= (PAIRS *)realloc(pair,sizeof(*pair)*(pairctn+2));
+            pair = new_pair;
+            //printf("a %lf %lf pair distances\n",*min_dist,pair[pairctn].distance );
+            if(*min_dist>pair[pairctn].distance){
+                *min_dist=pair[pairctn].distance;
+            } 
+            pairctn++;
+        } 
+    }
+    *num_pair = pairctn;
+return pair;    
+}
+void printFlytghts(FLYGHT *fl,PAIRS *pair,const double * distance, const int * pairs ){
+    for(int j = 0;j<*pairs;j++){
+        //printf("lf %lf %lf %d\n",*distance,pair[j].distance,fabs(*distance- pair[j].distance)<=1e4 * DBL_EPSILON * (fabs(*distance) + fabs(pair[j].distance)));
+       if(fabs(*distance- pair[j].distance)<=1e4 * DBL_EPSILON * (fabs(*distance) + fabs(pair[j].distance))
+           
+           ){
+            printf("%s - %s\n",fl[pair[j].id1].name, fl[pair[j].id2].name);
+       }
+
+    }
+    
+      
+
 
 }

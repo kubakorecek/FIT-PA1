@@ -1,13 +1,5 @@
-5
-0 3 2 2
-0 5 1 2
-0 2 3 3
-4 10 1 1
-20 5 1 1
-0
-3
-10
-32
-50
-1000
-53
+[0,0] KLM KL1981
+[5, 0] Etihad Airways ETD26
+[10, 0] British Airways BA123
+[7, 0] Emirates UAE93P
+[ 2 , 0 ] Wizz Air W67868
